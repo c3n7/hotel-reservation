@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Local
     'users.apps.UsersConfig',
     'rooms.apps.RoomsConfig',
+    'dashboard.apps.DashboardConfig',
 ]
 
 MIDDLEWARE = [
