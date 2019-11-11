@@ -15,4 +15,4 @@ class RoomCategory(models.Model):
         return self.category_name
 
     def get_absolute_url(self):
-        return reverse('room_detail', args=[str(self.id)])
+        return reverse('roomdashboard_detail', args=[str(self.id)])

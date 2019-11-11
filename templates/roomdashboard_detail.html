@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card mb-3" >
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="{{ object.room_image.url }}" class="card-img" alt="{{ object.category_name }}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h1 class="card-title">{{ object.category_name }}</h1>
+                <hr class="my-4">
+                <p class="card-text">{{ object.summary }}</p>
+                <p class="card-text">
+                <small>Price: <b>KSh.{{ object.price }}</b></small>
+                <br>
+                <small>Total Rooms: <b>{{ object.total_rooms }}</b></small>
+                </p>
+                <p>
+                <a href="{% url 'roomdashboard_edit' roomcategory.pk %}">Edit</a> | 
+                <a href="{% url 'roomdashboard_delete' roomcategory.pk %}">Delete</a>
+                </p>
+                <p>Back to 
+                <a href="{% url 'roomdashboard_list' %}">All Rooms</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

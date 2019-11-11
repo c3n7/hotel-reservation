@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} Rooms Dashboard{% endblock title %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col">
+        <a class="btn btn-primary" href="{% url 'roomdashboard_new' %}">+ New</a>
+    </div>
+</div>
+{% for room in object_list %}
+
+{% if forloop.counter|divisibleby:2 %}
+    <div class="col-sm-6">
+{% else %}
+    <div class="row">
+    <div class="col-sm-6">
+{% endif %}
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="{{ room.room_image.url }}" class="card-img" alt="{{ room.category_name }}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ room.category_name }}</h5>
+                <p class="card-text">{{ room.summary }}<p>
+                <p class="card-text">
+                    <small>Price: <b>KSh.{{ room.price }}</b></small>
+                    <br>
+                    <small>Total Rooms: <b>{{ room.total_rooms }}</b></small>
+                </p>
+                <a class="btn btn-primary" href="{% url 'roomdashboard_edit' room.pk %}">Edit</a>
+                <a class="btn btn-primary" href="{% url 'roomdashboard_delete' room.pk %}">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if forloop.counter|divisibleby:2 %}
+    </div>
+    </div>
+{% elif forloop.last %}
+{% comment %}Is last but not an even index{% endcomment %}
+    </div>
+    </div>
+{% else %}
+    {% comment %}<p>Not Last</p>{% endcomment %}
+    </div>
+{% endif %}
+
+{% endfor %}
+{% endblock content %}

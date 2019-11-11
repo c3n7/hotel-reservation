@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Edit</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% comment %}{{ form|crispy }}{% endcomment %}
+    {{ form.category_name|as_crispy_field }}
+    {{ form.summary|as_crispy_field }}
+    <figure class="figure">
+        <img src="{{ form.instance.room_image.url }}" 
+             height="100"
+             class="figure-img rounded" alt="Current Image">
+        <figcaption class="figure-caption">Current Image</figcaption>
+    </figure>
+    {{ form.room_image|as_crispy_field }}
+    {{ form.price|as_crispy_field }}
+    {{ form.total_rooms|as_crispy_field }}
+    <button type="submit" class="btn btn-info ml-2">Update</button>
+</form>
+
+<script>
+    // Workaround to remove the "Currently set" text
+    let elem = document.querySelector(".custom-file a");
+    const customFile = document.querySelector(".custom-file");
+    elem.remove();
+    elem = document.querySelector(".custom-file br");
+    elem.remove();
+    customFile.innerHTML = customFile.innerHTML.replace('Currently:', '');
+    customFile.innerHTML = customFile.innerHTML.replace('Change:', '');
+</script>
+
+{% endblock content %}
+
