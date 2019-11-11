@@ -22,6 +22,19 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         {% if user.is_authenticated %}
           <ul class="navbar-nav ml-auto">
+              {% if request.user.is_superuser %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" 
+                        href="#" id="navbarDropdownMenuLink" 
+                        role="button" data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">Admin Actions</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'roomdashboard_list' %}">Add, Edit or Delete Rooms</a>
+                    {% comment %}<a class="dropdown-item" href="#">Another action</a>{% endcomment %}
+                    {% comment %}<a class="dropdown-item" href="#">Something else here</a>{% endcomment %}
+                    </div>
+                </li>
+              {% endif %}
             <li class="nav-item">
               <a class="nav-link dropdown-toggle" href="#" id="userMenu"
                 data-toggle="dropdown" aria-haspopup="true"
