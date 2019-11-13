@@ -40,11 +40,12 @@ INSTALLED_APPS = [
 
     # 3rd Party
     'crispy_forms',
-
     # Local
+
     'users.apps.UsersConfig',
     'rooms.apps.RoomsConfig',
     'dashboard.apps.DashboardConfig',
+    'bookedrooms.apps.BookedroomsConfig',
 ]
 
 MIDDLEWARE = [
