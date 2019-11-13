@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} Booked Rooms {% endblock title %}
+
+{% block content %}
+<div class="row my-2">
+    <div class="col">
+        <a class="btn btn-primary" href="{% url 'bookedrooms_new' %}">+ New</a>
+    </div>
+</div>
+{% for bookedroom in object_list %}
+
+{% if forloop.counter|divisibleby:2 %}
+    <div class="col-sm-6">
+{% else %}
+    <div class="row">
+    <div class="col-sm-6">
+{% endif %}
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="{{ bookedroom.room_category.room_image.url }}" 
+            class="card-img" alt="{{ bookedroom.room_category.category_name }}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ bookedroom.room_category.category_name }}</h5>
+                <p class="card-text">
+                    <small>Number of Rooms: <b>{{ bookedroom.nbr_of_rooms }}</b></small>
+                    <br>
+                    <small>Check In: <b>{{ bookedroom.start_date }}</b></small>
+                    <br>
+                    <small>Check Out: <b>{{ bookedroom.end_date }}</b></small>
+                    <br>
+                    <small>Cost per Room per Day: <b>{{ bookedroom.room_category.price }}</small>
+                    <br>
+                    <small>Total Cost: <b>{{ bookedroom.total_cost }}</b></small>
+                </p>
+                {% comment %}<a class="btn btn-primary" href="{% url 'roomdashboard_edit' room.pk %}">Edit</a>{% endcomment %}
+                {% comment %}<a class="btn btn-primary" href="{% url 'roomdashboard_delete' room.pk %}">Delete</a>{% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if forloop.counter|divisibleby:2 %}
+    </div>
+    </div>
+{% elif forloop.last %}
+{% comment %}Is last but not an even index{% endcomment %}
+    </div>
+    </div>
+{% else %}
+    {% comment %}<p>Not Last</p>{% endcomment %}
+    </div>
+{% endif %}
+
+{% endfor %}
+{% endblock content %}
