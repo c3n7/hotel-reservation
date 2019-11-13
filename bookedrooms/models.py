@@ -28,6 +28,23 @@ class BookedRoom(models.Model):
             return 0
 
     def clean(self):
+        # The start date and date cannot be equal
+        if self.start_date == self.end_date:
+            raise ValidationError(
+                "The Check In date ({}) should not be equal to the Check Out date ({}).".format(
+                    self.start_date, self.end_date))
+
+        # The end date cannot be less than or equal to the start date
+        if self.end_date <= self.start_date:
+            raise ValidationError(
+                """The Check Out date ({}) should not be less than
+                 or equal to the Check In date ({}).""".format(
+                     self.end_date, self.start_date))
+
+        # For new bookings, the start date should not be less than today's date
+
+        # For old bookings, you can't update the details 4 days before the start date
+
 
         # Loop through the start and end dates
         day = timedelta(days=1)
