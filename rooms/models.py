@@ -18,3 +18,7 @@ class RoomCategory(models.Model):
 
     def get_absolute_url(self):
         return reverse('roomdashboard_detail', args=[str(self.id)])
+
+    class Meta:
+        verbose_name = 'Room Category'
+        verbose_name_plural = 'Room Categories'
