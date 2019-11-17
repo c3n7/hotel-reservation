@@ -84,5 +84,8 @@ class BookedRoom(models.Model):
                         current, self.nbr_of_rooms, remaining))
             current += day
 
+    def get_absolute_url(self):
+        return reverse('bookedrooms_detail', args=[str(self.id)])
+
     def __str__(self):
         return self.room_category.category_name + " |  " + self.user.username
