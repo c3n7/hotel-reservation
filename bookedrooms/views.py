@@ -43,8 +43,8 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
 
 class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
     model = BookedRoom
-    template_name = 'bookedroom_cancel.html'
-    success_url = reverse_lazy('home')
+    template_name = 'bookedroom_delete.html'
+    success_url = reverse_lazy('bookedrooms_list')
     login_url = 'login'
 
 class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
