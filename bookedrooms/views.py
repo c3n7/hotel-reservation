@@ -25,9 +25,21 @@ class BookedRoomsDetailView(LoginRequiredMixin, DetailView):
 
 class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     model = BookedRoom
-    fields = ('category_name', 'summary', 'room_image', 'price', 'total_rooms')
+    fields = ('room_category', 'nbr_of_rooms', 'start_date', 'end_date')
     template_name = 'bookedroom_edit.html'
+    success_url = reverse_lazy('bookedrooms_list')
     login_url = 'login'
+
+    def get_form(self):
+        form = super(BookedRoomsUpdateView, self).get_form()
+        form.fields['start_date'].widget = DatePickerInput().start_of('duration')
+        form.fields['end_date'].widget = DatePickerInput().end_of('duration')
+        return form
+
+    def form_valid(self, form):
+        user = self.request.user
+        form.instance.user = user
+        return super(BookedRoomsUpdateView, self).form_valid(form)
 
 class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
     model = BookedRoom

@@ -37,7 +37,7 @@
                     <br>
                     <small>Total Cost: <b>{{ bookedroom.total_cost }}</b></small>
                 </p>
-                {% comment %}<a class="btn btn-primary" href="{% url 'roomdashboard_edit' room.pk %}">Edit</a>{% endcomment %}
+                <a class="btn btn-primary" href="{% url 'bookedrooms_edit' bookedroom.pk %}">Edit</a>
                 {% comment %}<a class="btn btn-primary" href="{% url 'roomdashboard_delete' room.pk %}">Delete</a>{% endcomment %}
             </div>
         </div>

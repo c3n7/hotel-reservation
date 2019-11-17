@@ -9,6 +9,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'external/bootstrap/css/bootstrap.min.css' %}">
 
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'external/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'external/popper.min.js' %}"></script>
+    <script src="{% static 'external/bootstrap/js/bootstrap.min.js' %}"></script>
     <title>Hotel Reservation</title>
 </head>
 <body>
@@ -66,9 +70,5 @@
       {% endblock content %}
     </div>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'external/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'external/popper.min.js' %}"></script>
-    <script src="{% static 'external/bootstrap/js/bootstrap.min.js' %}"></script>
     </body>
 </html>
