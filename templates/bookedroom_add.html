@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Book Room</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% comment %}{{ form|crispy }}{% endcomment %}
+    {{ form.media }}
+    {{ form.room_category|as_crispy_field }}
+    {{ form.nbr_of_rooms|as_crispy_field }}
+    {{ form.start_date| as_crispy_field}}
+    {{ form.end_date|as_crispy_field }}
+    <button type="submit" class="btn btn-info ml-2">Save</button>
+</form>
+{% endblock content %}
