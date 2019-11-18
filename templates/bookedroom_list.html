@@ -3,11 +3,6 @@
 {% block title %} Booked Rooms {% endblock title %}
 
 {% block content %}
-<div class="row my-2">
-    <div class="col">
-        <a class="btn btn-primary" href="{% url 'bookedrooms_new' %}">+ New</a>
-    </div>
-</div>
 {% for bookedroom in object_list %}
 
 {% if forloop.counter|divisibleby:2 %}

@@ -1,11 +1,13 @@
 from braces.views import LoginRequiredMixin
 
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
-from django import forms
+
 from bootstrap_datepicker_plus import DatePickerInput
 
+from rooms.models import RoomCategory
 from .models import BookedRoom
 
 class BookedRoomsListView(LoginRequiredMixin, ListView):
@@ -53,13 +55,36 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('bookedrooms_list')
     login_url = 'login'
 
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Overridden to ensure that the primary key passed
+        does exist
+        """
+        self.room_category = get_object_or_404(RoomCategory, pk=kwargs['room_pk'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_initial(self):
+        """
+        Returns the initial data to use for forms on this view.
+        """
+        initial = super(BookedRoomsCreateView, self).get_initial()
+        initial['room_category'] = self.room_category
+        return initial
+
     def get_form(self):
+        """
+        Overridden to change the DateFields from text boxes to
+        DatePicker widgets
+        """
         form = super(BookedRoomsCreateView, self).get_form()
         form.fields['start_date'].widget = DatePickerInput().start_of('duration')
         form.fields['end_date'].widget = DatePickerInput().end_of('duration')
         return form
 
     def form_valid(self, form):
+        """
+        Overridden to always set the user to the currently logged in user
+        """
         user = self.request.user
         form.instance.user = user
         return super(BookedRoomsCreateView, self).form_valid(form)

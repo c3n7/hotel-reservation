@@ -18,7 +18,7 @@ urlpatterns = [
     path('<int:pk>/delete/',
          BookedRoomsDeleteView.as_view(),
          name='bookedrooms_delete'),
-    path('new/',
+    path('new/<int:room_pk>/',
          BookedRoomsCreateView.as_view(),
          name='bookedrooms_new'),
     path('',

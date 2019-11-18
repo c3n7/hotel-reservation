@@ -26,8 +26,7 @@
                     <br>
                     <small>Total Rooms: <b>{{ room.total_rooms }}</b></small>
                 </p>
-                {% comment %}<a class="btn btn-primary" href="{% url 'roomdashboard_edit' room.pk %}">Edit</a>{% endcomment %}
-                {% comment %}<a class="btn btn-primary" href="{% url 'roomdashboard_delete' room.pk %}">Delete</a>{% endcomment %}
+                <a class="btn btn-primary" href="{% url 'bookedrooms_new' room.pk %}">Book</a>
             </div>
         </div>
     </div>
