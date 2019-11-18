@@ -1,0 +1,25 @@
+.bg-shark {
+    background: #252930;
+}
+
+.text-haze {
+    color: #EAEBEC;
+}
+
+/*body {*/
+    /*background: #EAEBEC !important;*/
+/*}*/
+
+.bg-shark {
+    background-color: #252930 !important;
+}
+
+.card-link:hover {
+    color: #ED954A;
+}
+
+a.btn-small:hover {
+    background-color: #ED954A !important;
+    color: #EAEBEC;
+    text-decoration: none;
+}
