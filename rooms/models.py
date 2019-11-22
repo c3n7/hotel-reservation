@@ -4,7 +4,7 @@ from django.urls import reverse
 
 
 class RoomCategory(models.Model):
-    category_name = models.CharField(max_length=20)
+    category_name = models.CharField(max_length=50)
     summary = models.TextField()
     room_image = models.ImageField(
         upload_to='images/roomCategories',
