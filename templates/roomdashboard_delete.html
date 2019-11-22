@@ -2,29 +2,37 @@
 
 {% block content %}
 <h1>Delete</h1>
-<div class="card mb-3" >
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="{{ object.room_image.url }}" class="card-img" alt="{{ object.category_name }}">
+<div class="row">
+    <div class="col s6 m6">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ object.room_image.url }}" >
+            </div>
         </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h2 class="card-title">{{ object.category_name }}</h2>
-                <hr class="my-4">
-                <p class="card-text">{{ object.summary }}</p>
-                <p class="card-text">
+    </div>
+    <div class="col s6 m6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ object.category_name }}</span>
+                <p>{{ object.summary }}</p>
+                <p>
                 <small>Price: <b>KSh.{{ object.price }}</b></small>
                 <br>
                 <small>Total Rooms: <b>{{ object.total_rooms }}</b></small>
                 </p>
+            </div>
+            <div class="card-action">
                 <form method="post">
                     {% csrf_token %}
-                    <button class="btn btn-danger ml-2" type="submit">Delete</button>
-                    <a class="btn btn-success ml-s" 
+                    <button class="waves-effect waves-light btn-small red darken-4" 
+                             type="submit">Delete</button>
+                    <a class="waves-effect waves-light btn-small green darken-4" 
                         href="{% url 'roomdashboard_list' %}">Cancel</a>
                 </form>
+
             </div>
         </div>
     </div>
 </div>
+
 {% endblock content %}

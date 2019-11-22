@@ -5,38 +5,48 @@
 {% block content %}
 <div class="row my-2">
     <div class="col">
-        <a class="btn btn-primary" href="{% url 'roomdashboard_new' %}">+ New</a>
+        <a class="waves-effect waves-light btn-small blue-grey darken-4" 
+             href="{% url 'roomdashboard_new' %}">+ New</a>
     </div>
 </div>
+<div class="row">
 {% for room in object_list %}
 
 {% if forloop.counter|divisibleby:2 %}
-    <div class="col-sm-6">
+    <div class="col s6">
 {% else %}
     <div class="row">
-    <div class="col-sm-6">
+    <div class="col s6">
 {% endif %}
 
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="{{ room.room_image.url }}" class="card-img" alt="{{ room.category_name }}">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">{{ room.category_name }}</h5>
-                <p class="card-text">{{ room.summary }}<p>
-                <p class="card-text">
-                    <small>Price: <b>KSh.{{ room.price }}</b></small>
-                    <br>
-                    <small>Total Rooms: <b>{{ room.total_rooms }}</b></small>
-                </p>
-                <a class="btn btn-primary" href="{% url 'roomdashboard_edit' room.pk %}">Edit</a>
-                <a class="btn btn-primary" href="{% url 'roomdashboard_delete' room.pk %}">Delete</a>
-            </div>
-        </div>
+
+<div class="card sticky-action">
+    <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="{{ room.room_image.url }}" alt="{{ room.category_name }}">
+    </div>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">
+            {{ room.category_name }}<i class="material-icons right">more_vert</i>
+        </span>
+    </div>
+    <div class="card-action">
+        <a class="waves-effect waves-light btn-small blue-grey darken-4" 
+             href="{% url 'roomdashboard_edit' room.pk %}">Edit</a>
+        <a class="waves-effect waves-light btn-small blue-grey darken-4" 
+             href="{% url 'roomdashboard_delete' room.pk %}">Delete</a>
+    </div>
+    <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">
+          {{ room.category_name }}<i class="material-icons right">close</i></span>
+        <p>{{ room.summary }}<p>
+        <p>
+            <small>Price: <b>KSh.{{ room.price }}</b></small>
+            <br>
+            <small>Total Rooms: <b>{{ room.total_rooms }}</b></small>
+        </p>
     </div>
 </div>
+
 
 {% if forloop.counter|divisibleby:2 %}
     </div>
@@ -46,9 +56,10 @@
     </div>
     </div>
 {% else %}
-    {% comment %}<p>Not Last</p>{% endcomment %}
+    {% comment %}Not Last</p>{% endcomment %}
     </div>
 {% endif %}
 
 {% endfor %}
+</div>
 {% endblock content %}
