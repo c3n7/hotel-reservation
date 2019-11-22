@@ -6,16 +6,19 @@ from .views import (
     RoomDashboardDetailView,
     RoomDashboardDeleteView,
     RoomDashboardCreateView,
+    BookedRoomDashboardListView,
 )
 
 urlpatterns = [
-    path('<int:pk>/edit/',
+    path('rooms/<int:pk>/edit/',
          RoomDashboardUpdateView.as_view(), name='roomdashboard_edit'),
-    path('<int:pk>/',
+    path('rooms/<int:pk>/',
          RoomDashboardDetailView.as_view(), name='roomdashboard_detail'),
-    path('<int:pk>/delete/',
+    path('rooms/<int:pk>/delete/',
          RoomDashboardDeleteView.as_view(), name='roomdashboard_delete'),
-    path('new/',
+    path('rooms/new/',
          RoomDashboardCreateView.as_view(), name='roomdashboard_new'),
-    path('', RoomDashboardListView.as_view(), name='roomdashboard_list'),
+    path('rooms/', RoomDashboardListView.as_view(), name='roomdashboard_list'),
+    path('bookedrooms/',
+         BookedRoomDashboardListView.as_view(), name='bookedroomdashboard_list'),
 ]

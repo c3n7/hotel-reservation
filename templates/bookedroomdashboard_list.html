@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} Booked Rooms Admin View{% endblock title %}
+
+{% block content %}
+<h1>Booked Rooms</h1>
+<table class="striped">
+    <thead>
+      <tr>
+          <th>Room Category</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Number of Rooms</th>
+          <th>Check In</th>
+          <th>Check Out</th>
+          <th>Cost per Room per Day</th>
+          <th>Total Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for bookedroom in object_list %}
+
+    <tr>
+        <td>{{ bookedroom.room_category.category_name }}</td>
+        <td>{{ bookedroom.user.first_name }}</td>
+        <td>{{ bookedroom.user.last_name }}</td>
+        <td>{{ bookedroom.nbr_of_rooms }}</td>
+        <td>{{ bookedroom.start_date }}</td>
+        <td>{{ bookedroom.end_date }}</td>
+        <td>{{ bookedroom.room_category.price }}</td>
+        <td>{{ bookedroom.total_cost }}</td>
+    </tr>
+
+{% if forloop.last %}
+    </tbody>
+</table>
+{% endif %}
+{% endfor %}
+{% endblock content %}

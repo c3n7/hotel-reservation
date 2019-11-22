@@ -8,6 +8,7 @@ from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
 from rooms.models import RoomCategory
+from bookedrooms.models import BookedRoom
 
 class RoomDashboardListView(LoginRequiredMixin, SuperuserRequiredMixin, ListView):
     model = RoomCategory
@@ -36,4 +37,9 @@ class RoomDashboardCreateView(LoginRequiredMixin, SuperuserRequiredMixin, Create
     fields = ('category_name', 'summary', 'room_image', 'price', 'total_rooms')
     template_name = 'roomdashboard_new.html'
     success_url = reverse_lazy('roomdashboard_list')
+    login_url = 'login'
+
+class BookedRoomDashboardListView(LoginRequiredMixin, SuperuserRequiredMixin, ListView):
+    model = BookedRoom
+    template_name = 'bookedroomdashboard_list.html'
     login_url = 'login'
