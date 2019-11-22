@@ -14,8 +14,9 @@
     background-color: #252930 !important;
 }
 
-.card-link:hover {
-    color: #ED954A;
+nav a:hover {
+    text-decoration: none;
+    color: #EAEBEC;
 }
 
 a.btn-small:hover {
