@@ -3,39 +3,46 @@
 {% block title %} Booked Rooms {% endblock title %}
 
 {% block content %}
+<h1>Booked Rooms</h1>
 {% for bookedroom in object_list %}
 
 {% if forloop.counter|divisibleby:2 %}
-    <div class="col-sm-6">
+    <div class="col s6">
 {% else %}
-    <div class="row">
-    <div class="col-sm-6">
+    <div class="row my-2">
+    <div class="col s6">
 {% endif %}
 
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="{{ bookedroom.room_category.room_image.url }}" 
-            class="card-img" alt="{{ bookedroom.room_category.category_name }}">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">{{ bookedroom.room_category.category_name }}</h5>
-                <p class="card-text">
-                    <small>Number of Rooms: <b>{{ bookedroom.nbr_of_rooms }}</b></small>
-                    <br>
-                    <small>Check In: <b>{{ bookedroom.start_date }}</b></small>
-                    <br>
-                    <small>Check Out: <b>{{ bookedroom.end_date }}</b></small>
-                    <br>
-                    <small>Cost per Room per Day: <b>{{ bookedroom.room_category.price }}</small>
-                    <br>
-                    <small>Total Cost: <b>{{ bookedroom.total_cost }}</b></small>
-                </p>
-                <a class="btn btn-primary" href="{% url 'bookedrooms_edit' bookedroom.pk %}">Edit</a>
-                <a class="btn btn-primary" href="{% url 'bookedrooms_delete' bookedroom.pk %}">Delete</a>
-            </div>
-        </div>
+<div class="card sticky-action">
+    <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="{{ bookedroom.room_category.room_image.url }}" 
+            alt="{{ bookedroom.room_category.category_name }}">
+    </div>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">
+            {{ bookedroom.room_category.category_name }}<i class="material-icons right">more_vert</i>
+        </span>
+    </div>
+    <div class="card-action">
+        <a class="waves-effect waves-light btn-small blue-grey darken-4" 
+             href="{% url 'bookedrooms_edit' bookedroom.pk %}">Update Booking</a>
+        <a class="waves-effect waves-light btn-small blue-grey darken-4" 
+             href="{% url 'bookedrooms_delete' bookedroom.pk %}">Cancel Booking</a>
+    </div>
+    <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">
+          {{ room.category_name }}<i class="material-icons right">close</i></span>
+        <p>
+            <div>Number of Rooms: <b>{{ bookedroom.nbr_of_rooms }}</b></div>
+            <br>
+            <div>Check In: <b>{{ bookedroom.start_date }}</b></div>
+            <br>
+            <div>Check Out: <b>{{ bookedroom.end_date }}</b></div>
+            <br>
+            <div>Cost per Room per Day: <b>{{ bookedroom.room_category.price }}</b></div>
+            <br>
+            <div>Total Cost: <b>{{ bookedroom.total_cost }}</b></div>
+        </p>
     </div>
 </div>
 
