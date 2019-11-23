@@ -8,8 +8,6 @@
 
     <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
 
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" 
                           href="{% static 'external/materialize/css/materialize.min.css' %}"  
@@ -23,6 +21,16 @@
     <script src="{% static 'external/popper.min.js' %}"></script>
     <script src="{% static 'external/bootstrap/js/bootstrap.min.js' %}"></script>
     <title>Hotel Reservation</title>
+
+    <!-- Import Material Icons -->
+    <style>
+        @font-face {
+          font-family: 'Material Icons';
+          font-style: normal;
+          font-weight: 400;
+          src: url({% static 'external/materialicons.woff2' %}) format('woff2');
+        }
+    </style>
 </head>
 <body>
 
@@ -35,7 +43,7 @@
                     {% if request.user.is_superuser %}
                         <!-- Dropdown Trigger -->
                         <li>
-                            <a class='dropdown-trigger' href='#' 
+                            <a class="dropdown-trigger" href='#' 
                                data-target='adminDropdown'>Admin Actions
                                <i class="material-icons right">arrow_drop_down</i>
                             </a>
@@ -85,6 +93,12 @@
         <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{% static 'external/materialize/js/materialize.min.js' %}">
     </script>
-    <script>$('.dropdown-trigger').dropdown();</script>
+    <script>
+        $('.dropdown-trigger').dropdown();
+        $(".dropdown-trigger").dropdown({
+            coverTrigger: false,
+            constrainWidth: false
+        });
+    </script>
     </body>
 </html>
