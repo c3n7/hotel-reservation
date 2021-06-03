@@ -1,4 +1,7 @@
 env/
 venv/
+.vim/
 __pycache__/
+
+*.sqlite3
 *.jpg
