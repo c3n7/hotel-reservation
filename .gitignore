@@ -2,6 +2,7 @@ env/
 venv/
 .vim/
 __pycache__/
+roomCategories/
 
 *.sqlite3
 *.jpg
